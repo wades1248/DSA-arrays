@@ -12,6 +12,7 @@ class Memory {
       let start = this.head;
   
       this.head += size;
+      
       return start;
     }
   

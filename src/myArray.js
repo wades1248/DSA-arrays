@@ -1,11 +1,12 @@
-
-const Memory = require('./memory')
-const memory = Memory
+import Memory from './memory';
+//const Memory = require('./memory');
+const memory = new Memory();
 
 
 class Array {
     constructor() {
         this.length = 0;
+        this._capacity = 0;
         this.ptr = memory.allocate(this.length);
     }
     push(value){
@@ -55,16 +56,10 @@ class Array {
             throw new Error('Index Error')
         }
         memory.copy(this.ptr, this.ptr + index + 1, this.length - index -1)
+        this.length --;
         //why is it this.length - index -1, this makes NO SENSE
     }
 }
 Array.SIZE_RATIO = 3;
 
-function main(){
-    Array.SIZE_RATIO = 3;
-    let arr = new Array();
-
-    arr.push(3)
-    console.log(arr)
-}
-module.exports  = {Array, main}
+export default Array
